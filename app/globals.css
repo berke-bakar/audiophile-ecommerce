@@ -2,32 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  h1 {
+    @apply font-manrope font-bold text-[56px] uppercase leading-[58px] tracking-[2px];
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  h2 {
+    @apply font-manrope font-bold text-[40px] uppercase leading-[44px] tracking-[1.5px];
+  }
+
+  h3 {
+    @apply font-manrope font-bold text-[32px] uppercase leading-[36px] tracking-[1.15px];
+  }
+
+  h4 {
+    @apply font-manrope font-bold text-[28px] uppercase leading-[38px] tracking-[2px];
+  }
+
+  h5 {
+    @apply font-manrope font-bold text-[24px] uppercase leading-[33px] tracking-[1.7px];
+  }
+
+  h6 {
+    @apply font-manrope font-bold text-[18px] uppercase leading-[24px] tracking-[1.3px];
+  }
+
+  p {
+    @apply font-manrope font-medium text-[15px] leading-[25px];
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  .btn-1 {
+    width: 160px;
+    height: 48px;
+    text-align: center;
+    background-color: #d87d4a;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .btn-1:hover {
+    background-color: #fbaf85;
+  }
+
+  .btn-2 {
+    width: 160px;
+    height: 48px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    flex-shrink: 0;
+  }
+
+  .btn-2:hover {
+    background-color: black;
+    color: white;
+  }
+
+  .btn-3 {
+    color: rgba(0, 0, 0, 0.5);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13.322px;
+  }
+
+  .btn-3:hover {
+    color: #d87d4a;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.text-overline {
+  @apply font-manrope font-normal text-[14px] uppercase leading-[19px] tracking-[10px];
+}
+
+.text-subtitle {
+  @apply font-manrope font-bold text-[13px] uppercase leading-[25px] tracking-[1px];
 }
