@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Link from "next/link";
+import LogoSvg from "@/public/assets/logo.svg";
+import CartSvg from "@/public/assets/icon-cart.svg";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "AudioPhile - Where music, love & technology meets",
@@ -25,7 +29,16 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Navbar
+          logo={LogoSvg}
+          icon={CartSvg}
+          options={["Home", "Headphones", "Speakers", "Earphones"]}
+          className="bg-black"
+        />
+        {children}
+        {/* <Footer /> */}
+      </body>
     </html>
   );
 }
