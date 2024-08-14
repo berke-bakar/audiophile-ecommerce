@@ -2,14 +2,7 @@ import { cn } from "@/utils/util";
 import Image from "next/image";
 import Link from "next/link";
 import hamburger from "@/public/assets/icon-hamburger.svg";
-
-type Icon = {
-  src: string;
-  height: number;
-  width: number;
-  blurWidth: number;
-  blurHeight: number;
-};
+import { Icon } from "./Icon";
 
 type NavbarProps = {
   logo: Icon;
@@ -28,8 +21,8 @@ export default function Navbar({
   return (
     <nav
       className={cn(
-        "flex flex-row w-full justify-between items-center px-[40px] lg:px-0 h-[90px] lg:h-[96px] lg:max-w-[1110px] lg:mx-auto border-b border-white",
-        "lg:absolute lg:top-0 lg:left-0 lg:right-0",
+        "flex flex-row w-full justify-between items-center px-[40px] xl:px-0 h-[90px] xl:h-[96px] xl:max-w-[1110px] xl:mx-auto border-b border-white",
+        "xl:absolute xl:top-0 xl:left-0 xl:right-0",
         className
       )}
     >
@@ -39,7 +32,7 @@ export default function Navbar({
           alt="hamburger menu icon"
           height={hamburger.height}
           width={hamburger.width}
-          className="lg:hidden"
+          className="xl:hidden"
         />
         <Link href={"/"}>
           <Image
@@ -50,7 +43,7 @@ export default function Navbar({
           />
         </Link>
       </div>
-      <ul className="hidden lg:flex lg:flex-row text-white lg:items-center lg:gap-[34px]">
+      <ul className="hidden xl:flex xl:flex-row text-white xl:items-center xl:gap-[34px]">
         {options?.map((val, ind) => {
           const link =
             val.toLowerCase() === "home" ? "/" : `/${val.toLowerCase()}`;
