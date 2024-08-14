@@ -50,7 +50,7 @@
     width: 160px;
     height: 48px;
     text-align: center;
-    background-color: white;
+    background-color: transparent;
     color: black;
     border: 1px solid black;
     flex-shrink: 0;
