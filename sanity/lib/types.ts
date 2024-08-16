@@ -18,3 +18,10 @@ export type CategoryType = {
   _id: string;
   name: string;
 };
+
+export type SiteSettings = {
+  title: string;
+  footerText: string;
+  logo: string;
+  socialLinks: Record<string, string>;
+};
