@@ -5,23 +5,24 @@ export type ProductType = {
   name: string;
   price: number;
   catalogImage?: string;
-  images?: {
+  productImages?: {
     alt: string;
     imageUrl: string;
   }[];
   slug: string;
-  featuresDesc?: string;
+  feature?: string;
   isNew?: boolean;
 };
 
 export type CategoryType = {
   _id: string;
   name: string;
+  categoryImage: string;
 };
 
 export type SiteSettings = {
   title: string;
   footerText: string;
-  logo: string;
-  socialLinks: Record<string, string>;
+  logoImage: string;
+  socialLink: Record<string, string>;
 };

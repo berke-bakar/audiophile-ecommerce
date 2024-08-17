@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
-import LogoSvg from "@/public/assets/logo.svg";
 import CartSvg from "@/public/assets/icon-cart.svg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
+import { getSiteSettings } from "@/sanity/lib/site-settings-query";
+import { getCategories } from "@/sanity/lib/category-query";
 
 export const metadata: Metadata = {
   title: "AudioPhile - Where music, love & technology meets",
   description: "A demo e-commerce app of a audio systems company store",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryResults = await Promise.all([getSiteSettings(), getCategories()]);
+  const siteSettings = queryResults[0];
+  const categoryNames = queryResults[1].map((val) => val.name);
   return (
     <html lang="en">
       <head>
@@ -32,19 +35,17 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar
-          logo={LogoSvg}
+          logo={siteSettings[0].logoImage}
           icon={CartSvg}
-          options={["Home", "Headphones", "Speakers", "Earphones"]}
+          options={["Home", ...categoryNames]}
         />
         {children}
         <Footer
-          logo={LogoSvg}
-          options={["Home", "Headphones", "Speakers", "Earphones"]}
+          logo={siteSettings[0].logoImage}
+          options={["Home", ...categoryNames]}
+          socialLinks={siteSettings[0].socialLink}
         >
-          Audiophile is an all in one stop to fulfill your audio needs. We're a
-          small team of music lovers and sound specialists who are devoted to
-          helping you get the most out of personal audio. Come and visit our
-          demo facility - we're open 7 days a week.
+          {siteSettings[0].footerText}
         </Footer>
       </body>
     </html>

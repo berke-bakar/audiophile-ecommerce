@@ -40,6 +40,11 @@ export const siteSettingsType = defineType({
           title: "X (Twitter) Link",
           type: "url",
         }),
+        defineField({
+          name: "youtube",
+          title: "Youtube Link",
+          type: "url",
+        }),
       ],
     }),
   ],

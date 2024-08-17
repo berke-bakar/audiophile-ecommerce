@@ -5,7 +5,7 @@ import hamburger from "@/public/assets/icon-hamburger.svg";
 import { Icon } from "./Icon";
 
 type NavbarProps = {
-  logo: Icon;
+  logo: string;
   icon: Icon;
   className?: string;
   options?: string[];
@@ -35,12 +35,7 @@ export default function Navbar({
           className="xl:hidden"
         />
         <Link href={"/"}>
-          <Image
-            src={logo.src}
-            alt="logo icon"
-            height={logo.height}
-            width={logo.width}
-          />
+          <img src={logo} alt="Site logo" />
         </Link>
       </div>
       <ul className="hidden xl:flex xl:flex-row text-white xl:items-center xl:gap-[34px]">
