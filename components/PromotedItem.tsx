@@ -21,8 +21,6 @@ export default function PromotedItem({
   separated = false,
   className,
 }: PromotedItemProps) {
-  console.log(bgImage.src);
-
   const ProductNameEl =
     typeof productName === "string" ? (
       <h4 className="uppercase">{productName}</h4>

@@ -1,7 +1,8 @@
 import { groq } from "next-sanity";
 import { sanityFetch } from "./client";
+import { ProductType } from "./types";
 
-export async function getProducts() {
+export async function getProducts(): Promise<ProductType[]> {
   return sanityFetch({
     query: groq`*[_type == "product"] {
       _id,
@@ -16,7 +17,9 @@ export async function getProducts() {
   });
 }
 
-export async function getSelectedProducts(selectedCategory: string) {
+export async function getSelectedProducts(
+  selectedCategory: string
+): Promise<ProductType[]> {
   return sanityFetch({
     query: groq`*[_type == "product" && category->name == $selectedCategory] {
       _id,
@@ -32,7 +35,9 @@ export async function getSelectedProducts(selectedCategory: string) {
   });
 }
 
-export async function getSelectedProduct(productSlug: string) {
+export async function getSelectedProduct(
+  productSlug: string
+): Promise<ProductType[]> {
   return sanityFetch({
     query: groq`*[_type == "product" && slug->current == $productSlug] {
       _id,

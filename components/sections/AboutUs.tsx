@@ -4,21 +4,20 @@ import React from "react";
 
 type AboutUsProps = {
   className?: string;
-  image: StaticImageData;
+  // image: StaticImageData;
+  imageUrl: string;
 } & React.PropsWithChildren;
 
-export default function AboutUs({ image, className, children }: AboutUsProps) {
+export default function AboutUs({
+  imageUrl,
+  className,
+  children,
+}: AboutUsProps) {
   return (
     <div className={cn("flex items-center justify-between", className)}>
       {children}
-      <div style={{ height: image.height, width: image.width }}>
-        <Image
-          src={image.src}
-          height={image.height}
-          width={image.width}
-          alt="Generic image about company product"
-          className="rounded-lg"
-        />
+      <div style={{ height: 588, width: 540 }}>
+        <img src={imageUrl} alt="Generic image about company product" />
       </div>
     </div>
   );

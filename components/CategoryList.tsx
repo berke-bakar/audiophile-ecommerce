@@ -7,7 +7,7 @@ type CategoryListProps = {
 } & React.PropsWithChildren;
 
 type CategoryItemProps = {
-  categoryImg: StaticImageData;
+  categoryImg: string;
   name: string;
   className?: string;
 };
@@ -37,12 +37,10 @@ function Item({ categoryImg, name, className }: CategoryItemProps) {
       )}
     >
       <div className="relative">
-        <Image
-          src={categoryImg.src}
-          height={categoryImg.height / 2}
-          width={categoryImg.width / 2}
-          alt="Category image"
-          className="absolute bottom-0 left-0 right-0 mx-auto"
+        <img
+          src={categoryImg}
+          alt={`${name} category image`}
+          className="absolute bottom-0 left-0 right-0 mx-auto scale-[0.6]"
         />
       </div>
       <div className="flex flex-col items-center">

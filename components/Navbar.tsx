@@ -9,6 +9,7 @@ type NavbarProps = {
   icon: Icon;
   className?: string;
   options?: string[];
+  optionsPrefix?: string;
 } & React.PropsWithChildren;
 
 export default function Navbar({
@@ -16,7 +17,8 @@ export default function Navbar({
   icon,
   className,
   children,
-  options,
+  options = [],
+  optionsPrefix = "",
 }: NavbarProps) {
   return (
     <nav
@@ -41,7 +43,9 @@ export default function Navbar({
       <ul className="hidden xl:flex xl:flex-row text-white xl:items-center xl:gap-[34px]">
         {options?.map((val, ind) => {
           const link =
-            val.toLowerCase() === "home" ? "/" : `/${val.toLowerCase()}`;
+            val.toLowerCase() === "home"
+              ? "/"
+              : `/${optionsPrefix}/${val.toLowerCase()}`;
           return (
             <li
               key={ind}
@@ -58,7 +62,6 @@ export default function Navbar({
           alt="interactable icon"
           height={icon.height}
           width={icon.width}
-          className=""
         />
       </div>
     </nav>

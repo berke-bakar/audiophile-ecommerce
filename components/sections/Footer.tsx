@@ -1,6 +1,4 @@
 import React from "react";
-import { Icon } from "../Icon";
-import Image from "next/image";
 import Link from "next/link";
 import {
   FaFacebookSquare,
@@ -11,9 +9,9 @@ import {
 } from "react-icons/fa";
 
 type FooterProps = {
-  // logo: Icon;
   logo: string;
   options: string[];
+  optionsPrefix: string;
   socialLinks: Record<string, string>;
 } & React.PropsWithChildren;
 
@@ -22,9 +20,8 @@ export default function Footer({
   options,
   children,
   socialLinks,
+  optionsPrefix,
 }: FooterProps) {
-  console.log(socialLinks);
-
   return (
     <footer className="bg-black text-white">
       <div className="xl:max-w-[1110px] mx-auto grid grid-rows-3 grid-cols-2 items-end gap-[36px]">
@@ -32,7 +29,9 @@ export default function Footer({
         <ul className="flex gap-[34px] justify-end items-end">
           {options.map((val, ind) => {
             const link =
-              val.toLowerCase() === "home" ? "/" : `/${val.toLowerCase()}`;
+              val.toLowerCase() === "home"
+                ? "/"
+                : `/${optionsPrefix}/${val.toLowerCase()}`;
             return (
               <li
                 className="uppercase hover:text-primary-dark text-subtitle font-bold"

@@ -9,7 +9,9 @@ export async function getSiteSettings(): Promise<SiteSettings[]> {
       title,
       footerText,
       "logoImage": logo.asset->url,
-      socialLink
+      socialLink,
+      content,
+      "aboutUsImage": aboutusimage.asset->url,
     }`,
   });
 }
