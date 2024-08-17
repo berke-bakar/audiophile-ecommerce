@@ -5,10 +5,10 @@ export type ProductType = {
   name: string;
   price: number;
   catalogImage?: string;
-  productImages?: {
-    alt: string;
-    imageUrl: string;
-  }[];
+  productImages: {
+    alt: string[];
+    imageUrl: string[];
+  };
   slug: string;
   feature?: string;
   isNew?: boolean;

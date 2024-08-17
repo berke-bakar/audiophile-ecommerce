@@ -37,9 +37,9 @@ export async function getSelectedProducts(
 
 export async function getSelectedProduct(
   productSlug: string
-): Promise<ProductType[]> {
+): Promise<ProductType> {
   return sanityFetch({
-    query: groq`*[_type == "product" && slug->current == $productSlug] {
+    query: groq`*[_type == "product" && slug.current == $productSlug] {
       _id,
       "categoryName": category->name,
       description,
@@ -50,7 +50,7 @@ export async function getSelectedProduct(
       "slug": slug.current,
       feature,
       isNew,
-    }`,
+    }[0]`,
     params: { productSlug },
   });
 }

@@ -1,4 +1,4 @@
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/product/ProductCard";
 import { getSelectedProducts } from "@/sanity/lib/product-query";
 import React from "react";
 
@@ -14,7 +14,7 @@ export default async function Page({ params }: Props) {
       <div className="w-full h-[335px] bg-black text-white flex items-end justify-center pb-[95px] mb-[160px]">
         <h2>{params.name}</h2>
       </div>
-      <div className="flex flex-col xl:max-w-[1110px] mx-auto gap-[160px] mb-[180px]">
+      <div className="flex flex-col xl:max-w-[1110px] mx-auto gap-[160px] mb-[240px]">
         {catalogProducts.map((val, ind) => {
           return (
             <ProductCard
