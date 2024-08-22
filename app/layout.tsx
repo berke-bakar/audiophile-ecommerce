@@ -7,6 +7,7 @@ import { getSiteSettings } from "@/sanity/lib/site-settings-query";
 import { getCategories } from "@/sanity/lib/category-query";
 import AboutUs from "@/components/sections/AboutUs";
 import { PortableText } from "@portabletext/react";
+import CartProvider from "@/context/CartProvider";
 
 export const metadata: Metadata = {
   title: "AudioPhile - Where music, love & technology meets",
@@ -37,15 +38,17 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <Navbar
-          logo={siteSettings[0].logoImage}
-          icon={CartSvg}
-          options={["Home", ...categoryNames]}
-          optionsPrefix="category"
-        />
-        {children}
+        <CartProvider>
+          <Navbar
+            logo={siteSettings[0].logoImage}
+            icon={CartSvg}
+            options={["Home", ...categoryNames]}
+            optionsPrefix="category"
+            checkoutLink={"/checkout"}
+          />
+          {children}
+        </CartProvider>
         <AboutUs
-          // image={aboutUsImg}
           imageUrl={siteSettings[0].aboutUsImage}
           className="xl:max-w-[1110px] mx-auto xl:mb-[160px]"
         >

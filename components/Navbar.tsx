@@ -1,8 +1,12 @@
+"use client";
 import { cn } from "@/utils/util";
 import Image from "next/image";
 import Link from "next/link";
 import hamburger from "@/public/assets/icon-hamburger.svg";
 import { Icon } from "./Icon";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import CartModal from "./cart/CartModal";
 
 type NavbarProps = {
   logo: string;
@@ -10,16 +14,19 @@ type NavbarProps = {
   className?: string;
   options?: string[];
   optionsPrefix?: string;
-} & React.PropsWithChildren;
+  checkoutLink?: string;
+};
 
 export default function Navbar({
   logo,
   icon,
   className,
-  children,
   options = [],
   optionsPrefix = "",
+  checkoutLink = "/checkout",
 }: NavbarProps) {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <nav
       className={cn(
@@ -62,8 +69,15 @@ export default function Navbar({
           alt="interactable icon"
           height={icon.height}
           width={icon.width}
+          className="hover:cursor-pointer"
+          onClick={() => setShowModal(true)}
         />
       </div>
+      {showModal &&
+        createPortal(
+          <CartModal setShowModal={setShowModal} checkoutLink="/checkout" />,
+          document.body
+        )}
     </nav>
   );
 }

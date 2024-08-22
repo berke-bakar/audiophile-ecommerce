@@ -21,8 +21,10 @@
     "react-dom": "^18",
     "react-icons": "^5.3.0",
     "sanity": "^3.53.0",
+    "stripe": "^16.8.0",
     "styled-components": "^6.1.12",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^2.5.2",
+    "use-shopping-cart": "^3.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -17,12 +17,7 @@ export default async function Page({ params: { slug } }: Props) {
       <div className="xl:h-[96px] w-full bg-black mb-[160px]"></div>
       <main className="max-w-[1110px] mx-auto">
         <ProductPageCard
-          name={productInfo.name}
-          categoryName={productInfo.categoryName}
-          description={productInfo.description}
-          price={productInfo.price}
-          imageUrl={productInfo.catalogImage}
-          isNew={productInfo.isNew}
+          product={productInfo}
           className={"mb-[160px]"}
         />
         <ProductInfoCard
