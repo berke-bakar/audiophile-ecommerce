@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
+import CheckoutButton from "./CheckoutButton";
 
 type CartModalProps = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,9 +40,7 @@ export default function CartModal({
   setShowModal,
   checkoutLink,
 }: CartModalProps) {
-  const {clearCart, cartCount, cartDetails, totalPrice} = useShoppingCart();
-
-  console.log(cartDetails);
+  const { clearCart, cartCount, cartDetails, totalPrice } = useShoppingCart();
 
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
@@ -66,23 +65,32 @@ export default function CartModal({
         <Modal className="absolute z-20 xl:top-[130px] top-[114px] right-0 md:w-[377px] w-[327px] px-[28px] md:px-[33px] py-[32px] flex flex-col gap-[24px]">
           <div className="flex justify-between">
             <h6>Cart ({cartCount})</h6>
-            <button className="underline text-slate-500" onClick={() => clearCart()}>
+            <button
+              className="underline text-slate-500"
+              onClick={() => clearCart()}
+            >
               Remove all
             </button>
           </div>
-          {/* TODO: Fill with cart items */}
-          {
-          cartCount && cartCount > 0 ? 
-            Object.values(cartDetails ?? {}).map((item) => (<CartItem key={item.id} imageUrl={item.image} name={item.name} formattedPrice={item.formattedValue} productId={item.id} quantity={item.quantity}/>)) :
-            (<p>Your cart is empty</p>)
-          }
+          {cartCount && cartCount > 0 ? (
+            Object.values(cartDetails ?? {}).map((item) => (
+              <CartItem
+                key={item.id}
+                imageUrl={item.image}
+                name={item.name}
+                formattedPrice={item.formattedValue}
+                productId={item.id}
+                quantity={item.quantity}
+              />
+            ))
+          ) : (
+            <p>Your cart is empty</p>
+          )}
           <div className="flex flex-row justify-between">
             <p className="text-slate-500">TOTAL</p>
-            <p className="font-bold">{`${formatCurrencyString({currency: "USD", value: totalPrice?? 0})}`}</p>
+            <p className="font-bold">{`${formatCurrencyString({ currency: "USD", value: totalPrice ?? 0 })}`}</p>
           </div>
-          <button className="btn-1 w-full">
-            <Link href={`${checkoutLink}`}>Checkout</Link>
-          </button>
+          <CheckoutButton />
         </Modal>
       </div>
     </Overlay>
