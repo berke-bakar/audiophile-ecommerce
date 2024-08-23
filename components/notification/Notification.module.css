@@ -1,0 +1,24 @@
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.notification {
+  transition: transform 0.3s ease-out;
+}
+
+.notification.slideIn {
+  animation-name: slideIn;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+.notification.slideOut {
+  transform: translateX(150%);
+  flex: 0;
+}

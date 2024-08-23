@@ -8,6 +8,7 @@ import { getCategories } from "@/sanity/lib/category-query";
 import AboutUs from "@/components/sections/AboutUs";
 import { PortableText } from "@portabletext/react";
 import CartProvider from "@/context/CartProvider";
+import NotificationProvider from "@/context/NotificationProvider";
 
 export const metadata: Metadata = {
   title: "AudioPhile - Where music, love & technology meets",
@@ -38,41 +39,43 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <CartProvider>
-          <Navbar
+        <NotificationProvider>
+          <CartProvider>
+            <Navbar
+              logo={siteSettings[0].logoImage}
+              icon={CartSvg}
+              options={["Home", ...categoryNames]}
+              optionsPrefix="category"
+              checkoutLink={"/checkout"}
+            />
+            {children}
+          </CartProvider>
+          <AboutUs
+            imageUrl={siteSettings[0].aboutUsImage}
+            className="xl:max-w-[1110px] mx-auto xl:mb-[160px]"
+          >
+            <div className="max-w-[41.5%] flex flex-col gap-[32px]">
+              <PortableText
+                value={siteSettings[0].content!}
+                components={{
+                  marks: {
+                    colored: ({ children }) => (
+                      <span className="text-primary-dark">{children}</span>
+                    ),
+                  },
+                }}
+              />
+            </div>
+          </AboutUs>
+          <Footer
             logo={siteSettings[0].logoImage}
-            icon={CartSvg}
             options={["Home", ...categoryNames]}
             optionsPrefix="category"
-            checkoutLink={"/checkout"}
-          />
-          {children}
-        </CartProvider>
-        <AboutUs
-          imageUrl={siteSettings[0].aboutUsImage}
-          className="xl:max-w-[1110px] mx-auto xl:mb-[160px]"
-        >
-          <div className="max-w-[41.5%] flex flex-col gap-[32px]">
-            <PortableText
-              value={siteSettings[0].content!}
-              components={{
-                marks: {
-                  colored: ({ children }) => (
-                    <span className="text-primary-dark">{children}</span>
-                  ),
-                },
-              }}
-            />
-          </div>
-        </AboutUs>
-        <Footer
-          logo={siteSettings[0].logoImage}
-          options={["Home", ...categoryNames]}
-          optionsPrefix="category"
-          socialLinks={siteSettings[0].socialLink}
-        >
-          {siteSettings[0].footerText}
-        </Footer>
+            socialLinks={siteSettings[0].socialLink}
+          >
+            {siteSettings[0].footerText}
+          </Footer>
+        </NotificationProvider>
       </body>
     </html>
   );
