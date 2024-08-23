@@ -1,7 +1,9 @@
 "use client";
+import { NotificationContext } from "@/context/NotificationProvider";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import { useShoppingCart } from "use-shopping-cart";
+import { FaTimesCircle } from "react-icons/fa";
 
 type CartItemProps = {
   productId: string;
@@ -19,6 +21,24 @@ export default function CartItem({
   formattedPrice,
 }: CartItemProps) {
   const { incrementItem, decrementItem } = useShoppingCart();
+  const { createNotification } = useContext(NotificationContext);
+
+  function handleDecrease() {
+    if (quantity - 1 == 0) {
+      createNotification(
+        "warning",
+        true,
+        <div className="flex gap-4 items-center">
+          <FaTimesCircle size={24} />
+          <p>
+            <span className="font-bold">{name}</span> removed from cart.
+          </p>
+        </div>
+      );
+    }
+    decrementItem(productId);
+  }
+
   return (
     <div className="flex flex-row items-center gap-[16px]">
       <div className="relative h-[64px] w-[64px]">
@@ -39,7 +59,7 @@ export default function CartItem({
         <button
           data-action="decrement"
           className={"basis-[32px] text-center h-full"}
-          onClick={() => decrementItem(productId)}
+          onClick={handleDecrease}
           aria-label={`Remove one ${name} from your cart`}
         >
           <span className="m-auto text-base">-</span>

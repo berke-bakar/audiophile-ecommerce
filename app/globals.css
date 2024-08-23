@@ -46,6 +46,10 @@
     background-color: #fbaf85;
   }
 
+  .btn-1:disabled {
+    @apply bg-slate-400;
+  }
+
   .btn-2 {
     width: 160px;
     height: 48px;

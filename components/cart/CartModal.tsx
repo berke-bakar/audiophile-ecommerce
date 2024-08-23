@@ -1,10 +1,11 @@
 "use client";
 import { cn } from "@/utils/util";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import CartItem from "./CartItem";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import CheckoutButton from "./CheckoutButton";
+import { MdOutlineCleaningServices } from "react-icons/md";
+import { NotificationContext } from "@/context/NotificationProvider";
 
 type CartModalProps = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,6 +42,7 @@ export default function CartModal({
   checkoutLink,
 }: CartModalProps) {
   const { clearCart, cartCount, cartDetails, totalPrice } = useShoppingCart();
+  const { createNotification } = useContext(NotificationContext);
 
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
@@ -49,6 +51,19 @@ export default function CartModal({
       document.body.classList.remove("overflow-hidden");
     };
   }, []);
+
+  function handleClearButton() {
+    clearCart();
+    createNotification(
+      "info",
+      true,
+      <div className="flex gap-4 items-center">
+        <MdOutlineCleaningServices />
+        <p>Cart Cleaned.</p>
+      </div>
+    );
+  }
+
   return (
     <Overlay
       onClick={(e) => {
@@ -66,8 +81,9 @@ export default function CartModal({
           <div className="flex justify-between">
             <h6>Cart ({cartCount})</h6>
             <button
-              className="underline text-slate-500"
-              onClick={() => clearCart()}
+              className="underline text-slate-500 disabled:hidden"
+              onClick={handleClearButton}
+              disabled={cartCount ? !(cartCount > 0) : true}
             >
               Remove all
             </button>

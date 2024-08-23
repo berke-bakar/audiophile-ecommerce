@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { NotificationContext } from "@/context/NotificationProvider";
+import { useContext, useState, useTransition } from "react";
 import { useShoppingCart } from "use-shopping-cart";
+import { FaCheckCircle } from "react-icons/fa";
 
 type CartProductType = {
   name: string;
@@ -25,6 +27,7 @@ export default function AddToCart({ product }: Props) {
   const [isPending, startTransition] = useTransition();
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useShoppingCart();
+  const { createNotification } = useContext(NotificationContext);
 
   const handleQuantity = (action: Action) => {
     switch (action) {
@@ -68,7 +71,19 @@ export default function AddToCart({ product }: Props) {
       <button
         disabled={isPending}
         className="btn-1"
-        onClick={() => addItem(product, { count: quantity })}
+        onClick={() => {
+          addItem(product, { count: quantity });
+          createNotification(
+            "success",
+            true,
+            <div className="flex gap-4 items-center">
+              <FaCheckCircle size={24} />
+              <p>
+                <span className="font-bold">{product.name}</span> added to cart.
+              </p>
+            </div>
+          );
+        }}
       >
         <span>ADD TO CART</span>
       </button>

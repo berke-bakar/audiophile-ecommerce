@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import { loadStripe } from "@stripe/stripe-js";
+import { NotificationContext } from "@/context/NotificationProvider";
 type Props = {};
 
 export default function CheckoutButton({}: Props) {
+  const { createNotification } = useContext(NotificationContext);
   const { cartCount = 0, cartDetails } = useShoppingCart();
 
   const redirectToCheckout = async () => {
@@ -30,6 +32,11 @@ export default function CheckoutButton({}: Props) {
         console.error(stripeError);
       }
     } catch (error) {
+      createNotification(
+        "error",
+        false,
+        <p>An error occured while connecting to Stripe. Try again later.</p>
+      );
       console.error(error);
     }
   };

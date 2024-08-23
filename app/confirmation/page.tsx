@@ -1,9 +1,11 @@
 "use client";
+import { NotificationContext } from "@/context/NotificationProvider";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import { CartEntry } from "use-shopping-cart/core";
+import { LuPackageCheck } from "react-icons/lu";
 
 type Props = {};
 type CartItem = {
@@ -18,6 +20,7 @@ export default function Page({}: Props) {
   const { clearCart, cartDetails } = useShoppingCart();
   const [lastCart, setLastCart] = useState<CartEntry[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const { createNotification } = useContext(NotificationContext);
 
   useEffect(() => {
     // Reaching this page clears the cart as transaction is successful
@@ -29,6 +32,14 @@ export default function Page({}: Props) {
       setLastCart(Object.values(cartDetails));
       setTotalPrice(total);
       clearCart();
+      createNotification(
+        "success",
+        true,
+        <div className="flex gap-4 items-center">
+          <LuPackageCheck size={24} />
+          <p>Order Confirmed.</p>
+        </div>
+      );
     }
   }, [cartDetails]);
 
