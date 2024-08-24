@@ -1,13 +1,17 @@
+import { DimensionType } from "@/sanity/lib/types";
 import { cn } from "@/utils/util";
-import { StaticImageData } from "next/image";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type PromotedItemProps = {
   productName: string | React.ReactElement;
   productDescription?: string;
   align?: "left" | "right";
-  bgImage: StaticImageData;
+  bgImage: string;
+  dimensions: DimensionType;
   buttonClass?: string;
+  buttonLink: string;
   separated?: boolean;
   className?: string;
 };
@@ -17,7 +21,9 @@ export default function PromotedItem({
   productDescription,
   align = "left",
   bgImage,
+  dimensions,
   buttonClass = "btn-1",
+  buttonLink,
   separated = false,
   className,
 }: PromotedItemProps) {
@@ -28,10 +34,15 @@ export default function PromotedItem({
       productName
     );
 
+  const height = !separated
+    ? 1110 / dimensions.aspectRatio
+    : Math.max(dimensions.width, 550 - 30) / dimensions.aspectRatio;
+  const width = height * dimensions.aspectRatio;
+
   return (
     <div
       className={cn(
-        "xl:w-[1110px] xl:h-[320px] rounded-lg mx-auto flex items-center",
+        "xl:w-[1110px] rounded-lg mx-auto flex items-center relative",
         {
           "justify-end": align === "right" && !separated,
           "gap-[30px]": separated,
@@ -40,19 +51,19 @@ export default function PromotedItem({
         className
       )}
       style={{
-        backgroundImage: !separated ? `url(${bgImage.src})` : "",
-        height: bgImage.height,
+        height: height,
       }}
     >
+      {!separated && (
+        <Image alt="" src={bgImage} className="-z-10 rounded-lg" fill />
+      )}
+
       {separated && (
-        <div
-          className="max-h-full rounded-lg"
-          style={{
-            backgroundImage: `url(${bgImage.src})`,
-            height: bgImage.height,
-            width: bgImage.width,
-          }}
-        ></div>
+        <div className="h-full rounded-lg">
+          <div className="relative h-full" style={{ minWidth: width }}>
+            <Image alt="" src={bgImage} className="-z-10 rounded-lg" fill />
+          </div>
+        </div>
       )}
 
       <div
@@ -63,7 +74,13 @@ export default function PromotedItem({
       >
         {ProductNameEl}
         {productDescription && <p>{productDescription}</p>}
-        <button className={cn("uppercase", buttonClass)}>See Product</button>
+        <div>
+          <Link href={buttonLink || "/"}>
+            <button className={cn("uppercase", buttonClass)}>
+              See Product
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

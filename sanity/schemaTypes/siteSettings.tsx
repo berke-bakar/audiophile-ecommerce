@@ -1,4 +1,4 @@
-import { BlockDecoratorProps, defineField, defineType } from "sanity";
+import { BlockDecoratorProps, defineField, defineType, Rule } from "sanity";
 import React from "react";
 
 export const siteSettingsType = defineType({
@@ -83,6 +83,11 @@ export const siteSettingsType = defineType({
       name: "aboutusimage",
       title: "About Us Image",
       type: "image",
+    }),
+    defineField({
+      name: "backgroundColor",
+      title: "Background Color",
+      type: "color",
     }),
   ],
 });

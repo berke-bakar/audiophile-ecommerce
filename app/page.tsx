@@ -1,29 +1,44 @@
 import HeroSection from "@/components/sections/HeroSection";
-import speaker1ProductBg from "@/public/assets/image-product1.png";
-import speaker2ProductBg from "@/public/assets/image-product2.jpg";
-import eaphoneProductBg from "@/public/assets/image-product3.jpg";
 import CategoryList from "@/components/CategoryList";
 import PromotedItem from "@/components/PromotedItem";
 
 import { getCategories } from "@/sanity/lib/category-query";
+import { getSiteSettings } from "@/sanity/lib/site-settings-query";
+import { getPromotedProducts } from "@/sanity/lib/product-query";
+import { cn } from "@/utils/util";
 
 export default async function Home() {
-  const queryResults = await getCategories();
+  const queryResults = await Promise.all([
+    getSiteSettings(),
+    getCategories(),
+    getPromotedProducts(),
+  ]);
+  const siteSettings = queryResults[0];
+  const categoryResults = queryResults[1];
+  const promotedResults = queryResults[2];
+
+  const bgColorObj = siteSettings[0].bgColor;
+  const bgColor = `rgba(${bgColorObj.r}, ${bgColorObj.g}, ${bgColorObj.b}, ${bgColorObj.a ?? 1})`;
+
   return (
     <>
-      <div className="bg-[#191919] xl:mb-[120px]">
+      <div
+        className="xl:mb-[120px]"
+        style={{
+          backgroundColor: bgColor,
+        }}
+      >
         <HeroSection
           infoText={"New Product"}
-          titleText={"XX99 Mark II Headphones"}
-          subtitleText={
-            "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
-          }
+          titleText={`${promotedResults.heroProductName} ${promotedResults.heroProductCategory}`}
+          subtitleText={promotedResults.heroText}
           buttonText={"See Product"}
+          buttonLink={`/product/${promotedResults.heroProductSlug}`}
           className="bg-hero md:bg-hero-md xl:bg-hero-lg"
         />
       </div>
       <CategoryList className="xl:mb-[168px]">
-        {queryResults.map((val, ind) => {
+        {categoryResults.map((val, ind) => {
           return (
             <CategoryList.Item
               categoryImg={val.categoryImage}
@@ -34,29 +49,28 @@ export default async function Home() {
         })}
       </CategoryList>
       <div className="flex flex-col gap-[48px] xl:mb-[200px]">
-        <PromotedItem
-          productName={<h1>ZX9 Speaker</h1>}
-          productDescription={
-            "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
-          }
-          align={"right"}
-          bgImage={speaker1ProductBg}
-          buttonClass={"btn-1 bg-black"}
-          className={"text-white"}
-        />
-        <PromotedItem
-          productName={"ZX7 Speaker"}
-          align={"left"}
-          bgImage={speaker2ProductBg}
-          buttonClass={"btn-2"}
-        />
-        <PromotedItem
-          productName={"YX1 Earphones"}
-          align={"right"}
-          bgImage={eaphoneProductBg}
-          buttonClass={"btn-2"}
-          separated
-        />
+        {promotedResults.promotedProductNames.map((val, ind) => {
+          return (
+            <PromotedItem
+              productName={ind === 0 ? <h1>{val}</h1> : val}
+              productDescription={promotedResults.promotedDescs[ind]}
+              align={promotedResults.promotedTextAlignments[ind]}
+              bgImage={promotedResults.promotedUrls[ind]}
+              dimensions={promotedResults.promotedDimensions[ind]}
+              buttonClass={cn({
+                "btn-1 bg-black":
+                  promotedResults.promotedTextStyles[ind] === "white",
+                "btn-2": promotedResults.promotedTextStyles[ind] === "black",
+              })}
+              buttonLink={`/product/${promotedResults.promotedProductSlugs[ind]}`}
+              className={cn({
+                "text-white":
+                  promotedResults.promotedTextStyles[ind] === "white",
+              })}
+              separated={promotedResults.promotedPanelSeparated[ind]}
+            />
+          );
+        })}
       </div>
     </>
   );

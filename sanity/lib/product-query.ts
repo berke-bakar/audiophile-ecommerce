@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import { sanityFetch } from "./client";
-import { ProductType } from "./types";
+import { ProductType, PromotedProducts } from "./types";
 
 export async function getProducts(): Promise<ProductType[]> {
   return sanityFetch({
@@ -52,5 +52,28 @@ export async function getSelectedProduct(
       isNew,
     }[0]`,
     params: { productSlug },
+  });
+}
+
+export async function getPromotedProducts(): Promise<PromotedProducts> {
+  return sanityFetch({
+    query: groq`*[_type == "promotedProducts"] {
+        "heroProductName": heroItems.heroProduct->name,
+        "heroProductCategory": heroItems.heroProduct->category->name,
+        "heroProductSlug": heroItems.heroProduct->slug.current,
+        "heroText": heroItems.heroText,
+        "heroAlt": heroItems.heroAlt,
+        "heroImageUrl": heroItems.asset->url,
+        "heroImageDimensions": heroItems.asset->metadata.dimensions,
+        "promotedUrls": promotedItems[].asset->url,
+        "promotedDimensions": promotedItems[].asset->metadata.dimensions,
+        "promotedDescs": promotedItems[].description,
+        "promotedAlts": promotedItems[].alt,
+        "promotedTextStyles": promotedItems[].textStyle,
+        "promotedTextAlignments": promotedItems[].textAlignment,
+        "promotedPanelSeparated": promotedItems[].panelSeparated,
+        "promotedProductNames": promotedItems[].promotedProduct->name,
+        "promotedProductSlugs": promotedItems[].promotedProduct->slug.current,
+      }[0]`,
   });
 }

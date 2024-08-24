@@ -1,10 +1,12 @@
 import { cn } from "@/utils/util";
+import Link from "next/link";
 
 type HeroSectionProps = {
   infoText: string;
   titleText: string;
   subtitleText: string;
   buttonText: string;
+  buttonLink: string;
   className: string;
 };
 
@@ -13,6 +15,7 @@ export default function HeroSection({
   titleText,
   subtitleText,
   buttonText,
+  buttonLink,
   className,
 }: HeroSectionProps) {
   return (
@@ -28,7 +31,9 @@ export default function HeroSection({
           <h1>{titleText}</h1>
           <p className="opacity-75 w-[40ch]">{subtitleText}</p>
         </div>
-        <button className="btn-1 uppercase">{buttonText}</button>
+        <Link href={buttonLink}>
+          <button className="btn-1 uppercase">{buttonText}</button>
+        </Link>
       </div>
     </section>
   );

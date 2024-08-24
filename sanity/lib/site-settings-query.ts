@@ -12,6 +12,7 @@ export async function getSiteSettings(): Promise<SiteSettings[]> {
       socialLink,
       content,
       "aboutUsImage": aboutusimage.asset->url,
+      "bgColor": backgroundColor.rgb
     }`,
   });
 }

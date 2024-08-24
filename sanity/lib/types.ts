@@ -44,4 +44,36 @@ export type SiteSettings = {
     _type: "block";
     _key: string;
   }>;
+  bgColor: {
+    _type: "rgbaColor";
+    r: number;
+    g: number;
+    b: number;
+    a?: number;
+  };
+};
+
+export type PromotedProducts = {
+  heroProductName: string;
+  heroProductCategory: string;
+  heroProductSlug: string;
+  heroText: string;
+  heroAlt: string;
+  heroImageUrl: string;
+  heroImageDimensions: DimensionType;
+  promotedUrls: string[];
+  promotedDimensions: DimensionType[];
+  promotedDescs: string[];
+  promotedAlts: string[];
+  promotedTextStyles: string[];
+  promotedTextAlignments: Array<"left" | "right">;
+  promotedPanelSeparated: boolean[];
+  promotedProductNames: string[];
+  promotedProductSlugs: string[];
+};
+
+export type DimensionType = {
+  width: number;
+  height: number;
+  aspectRatio: number;
 };

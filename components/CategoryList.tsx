@@ -1,5 +1,6 @@
 import { cn } from "@/utils/util";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type CategoryListProps = {
@@ -19,7 +20,7 @@ export default function CategoryList({
   return (
     <div
       className={cn(
-        "xl:flex xl:flex-row xl:flex-wrap xl:gap-[30px] xl:justify-center",
+        "flex flex-col xl:flex-row xl:flex-wrap xl:gap-[30px] xl:justify-center",
         className
       )}
     >
@@ -30,24 +31,27 @@ export default function CategoryList({
 
 function Item({ categoryImg, name, className }: CategoryItemProps) {
   return (
-    <div
-      className={cn(
-        "flex flex-col justify-end xl:h-[204px] xl:w-[350px] rounded-lg bg-slate-medium p-7",
-        className
-      )}
-    >
-      <div className="relative">
-        <img
-          src={categoryImg}
-          alt={`${name} category image`}
-          className="absolute bottom-0 left-0 right-0 mx-auto scale-[0.6]"
-        />
+    <Link href={`/category/${name}`}>
+      <div
+        className={cn(
+          "flex flex-col justify-end xl:h-[204px] xl:w-[350px] rounded-lg bg-slate-medium p-7",
+          className
+        )}
+      >
+        <div className="relative xl:min-h-[160px] min-h-[104px]">
+          <Image
+            src={categoryImg}
+            alt={`${name} category image`}
+            fill
+            style={{ objectFit: "contain", top: "-25%" }}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <h6>{name}</h6>
+          <Button>Shop</Button>
+        </div>
       </div>
-      <div className="flex flex-col items-center">
-        <h6>{name}</h6>
-        <Button>Shop</Button>
-      </div>
-    </div>
+    </Link>
   );
 }
 

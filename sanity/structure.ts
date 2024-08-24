@@ -1,5 +1,5 @@
 import type { StructureResolver } from "sanity/structure";
-import { ControlsIcon } from "@sanity/icons";
+import { ControlsIcon, SparklesIcon } from "@sanity/icons";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) => {
   return S.list()
@@ -13,8 +13,17 @@ export const structure: StructureResolver = (S) => {
             .schemaType("siteSettings")
             .documentId("siteSettingsSingleton")
         ),
+      S.listItem()
+        .title("Promoted Products")
+        .icon(SparklesIcon)
+        .child(
+          S.document()
+            .schemaType("promotedProducts")
+            .documentId("promotedProductsSingleton")
+        ),
       ...S.documentTypeListItems().filter(
-        (listItem) => !["siteSettings"].includes(listItem.getId()!)
+        (listItem) =>
+          !["siteSettings", "promotedProducts"].includes(listItem.getId()!)
       ),
     ]);
 };
