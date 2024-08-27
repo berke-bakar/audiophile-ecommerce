@@ -7,7 +7,8 @@ type HeroSectionProps = {
   subtitleText: string;
   buttonText: string;
   buttonLink: string;
-  className: string;
+  className?: string;
+  backgroundImage?: string;
 };
 
 export default function HeroSection({
@@ -17,6 +18,7 @@ export default function HeroSection({
   buttonText,
   buttonLink,
   className,
+  backgroundImage,
 }: HeroSectionProps) {
   return (
     <section
@@ -24,6 +26,9 @@ export default function HeroSection({
         "xl:h-[729px] bg-contain bg-center bg-no-repeat",
         className
       )}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
     >
       <div className="xl:max-w-[1110px] flex flex-col gap-[40px] xl:mx-auto xl:py-[225px]">
         <div className="flex flex-col gap-[24px] w-[45ch] text-white">

@@ -34,7 +34,7 @@ export default async function Home() {
           subtitleText={promotedResults.heroText}
           buttonText={"See Product"}
           buttonLink={`/product/${promotedResults.heroProductSlug}`}
-          className="bg-hero md:bg-hero-md xl:bg-hero-lg"
+          backgroundImage={promotedResults.heroImageUrl}
         />
       </div>
       <CategoryList className="xl:mb-[168px]">
@@ -52,6 +52,7 @@ export default async function Home() {
         {promotedResults.promotedProductNames.map((val, ind) => {
           return (
             <PromotedItem
+              key={val}
               productName={ind === 0 ? <h1>{val}</h1> : val}
               productDescription={promotedResults.promotedDescs[ind]}
               align={promotedResults.promotedTextAlignments[ind]}

@@ -61,7 +61,13 @@ export default function PromotedItem({
       {separated && (
         <div className="h-full rounded-lg">
           <div className="relative h-full" style={{ minWidth: width }}>
-            <Image alt="" src={bgImage} className="-z-10 rounded-lg" fill />
+            <Image
+              alt={`Image of ${productName}`}
+              src={bgImage}
+              className="-z-10 rounded-lg"
+              fill
+              objectFit="cover"
+            />
           </div>
         </div>
       )}

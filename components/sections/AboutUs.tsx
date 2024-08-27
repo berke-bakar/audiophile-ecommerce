@@ -16,8 +16,13 @@ export default function AboutUs({
   return (
     <div className={cn("flex items-center justify-between", className)}>
       {children}
-      <div style={{ height: 588, width: 540 }}>
-        <img src={imageUrl} alt="Generic image about company product" />
+      <div className="relative" style={{ height: 588, width: 540 }}>
+        <Image
+          src={imageUrl}
+          alt="Generic image about company product"
+          fill
+          className="rounded-lg"
+        />
       </div>
     </div>
   );
