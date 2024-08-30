@@ -1,12 +1,18 @@
+import { BoxContentItem } from "@/sanity/lib/types";
 import { cn, escapedNewLineToLineBreakTag } from "@/utils/util";
 import React from "react";
 
 type Props = {
   features?: string;
   className?: string;
+  boxContents?: BoxContentItem[];
 };
 
-export default function ProductInfoCard({ features, className }: Props) {
+export default function ProductInfoCard({
+  features,
+  className,
+  boxContents,
+}: Props) {
   return (
     <div className={cn("flex gap-[125px]", className)}>
       <div className="flex flex-col gap-[32px] max-w-[635px]">
@@ -16,26 +22,16 @@ export default function ProductInfoCard({ features, className }: Props) {
       <div className="flex flex-col gap-[32px]">
         <h3>In the Box</h3>
         <div className="flex flex-col gap-[8px]">
-          <p>
-            <span className="me-[24px] text-primary-dark text-bold">1x</span>
-            <span className="opacity-50">Headphone Unit</span>
-          </p>
-          <p>
-            <span className="me-[24px] text-primary-dark text-bold">2x</span>
-            <span className="opacity-50">Replacement Earcups</span>
-          </p>
-          <p>
-            <span className="me-[24px] text-primary-dark text-bold">1x</span>
-            <span className="opacity-50">User Manual</span>
-          </p>
-          <p>
-            <span className="me-[24px] text-primary-dark text-bold">1x</span>
-            <span className="opacity-50">3.5mm 5m Audio Cable</span>
-          </p>
-          <p>
-            <span className="me-[24px] text-primary-dark text-bold">1x</span>
-            <span className="opacity-50">Travel Bag</span>
-          </p>
+          {boxContents?.map((val) => {
+            return (
+              <p>
+                <span className="me-[24px] text-primary-dark text-bold">
+                  {val.accessoryQuantity}x
+                </span>
+                <span className="opacity-50">{val.accessoryName}</span>
+              </p>
+            );
+          })}
         </div>
       </div>
     </div>

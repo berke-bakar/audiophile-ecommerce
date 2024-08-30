@@ -16,13 +16,11 @@ export default async function Page({ params: { slug } }: Props) {
     <>
       <div className="xl:h-[96px] w-full bg-black mb-[160px]"></div>
       <main className="max-w-[1110px] mx-auto">
-        <ProductPageCard
-          product={productInfo}
-          className={"mb-[160px]"}
-        />
+        <ProductPageCard product={productInfo} className={"mb-[160px]"} />
         <ProductInfoCard
           features={productInfo.feature}
           className={"mb-[160px]"}
+          boxContents={productInfo.inTheBox}
         />
         <ProductImageGallery
           topImageSrc={productInfo.productImages.imageUrl[0]}

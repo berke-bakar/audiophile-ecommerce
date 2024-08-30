@@ -50,6 +50,7 @@ export async function getSelectedProduct(
       "slug": slug.current,
       feature,
       isNew,
+      inTheBox,
     }[0]`,
     params: { productSlug },
   });

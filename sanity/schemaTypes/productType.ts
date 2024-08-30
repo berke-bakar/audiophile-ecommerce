@@ -76,5 +76,32 @@ export const productType = defineType({
       },
       initialValue: false,
     }),
+    defineField({
+      title: "What is in the box?",
+      name: "inTheBox",
+      type: "array",
+      of: [
+        {
+          name: "boxItem",
+          type: "object",
+          title: "Provide accessory name and quantity",
+          fields: [
+            {
+              name: "accessoryName",
+              title: "Accessory Name",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "accessoryQuantity",
+              title: "Accessory Quantity",
+              type: "number",
+              validation: (Rule) => Rule.min(1).positive().required(),
+            },
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.min(1),
+    }),
   ],
 });

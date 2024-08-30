@@ -1,3 +1,7 @@
+export type BoxContentItem = {
+  accessoryName: string;
+  accessoryQuantity: number;
+};
 export type ProductType = {
   _id: string;
   categoryName: string;
@@ -12,6 +16,7 @@ export type ProductType = {
   slug: string;
   feature?: string;
   isNew?: boolean;
+  inTheBox?: BoxContentItem[];
 };
 
 export type CategoryType = {
