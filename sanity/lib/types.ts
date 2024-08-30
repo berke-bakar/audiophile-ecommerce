@@ -1,6 +1,7 @@
 export type BoxContentItem = {
   accessoryName: string;
   accessoryQuantity: number;
+  _key: string;
 };
 export type ProductType = {
   _id: string;

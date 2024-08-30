@@ -22,9 +22,9 @@ export default function ProductInfoCard({
       <div className="flex flex-col gap-[32px]">
         <h3>In the Box</h3>
         <div className="flex flex-col gap-[8px]">
-          {boxContents?.map((val) => {
+          {boxContents?.map((val, ind) => {
             return (
-              <p>
+              <p key={val._key}>
                 <span className="me-[24px] text-primary-dark text-bold">
                   {val.accessoryQuantity}x
                 </span>
