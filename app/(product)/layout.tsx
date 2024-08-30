@@ -10,7 +10,7 @@ export default async function Layout({ children }: LayoutProps) {
   return (
     <>
       {children}
-      <CategoryList className="xl:mb-[168px]">
+      <CategoryList className="xl:mb-[168px] mb-[120px]">
         {queryResults.map((val, ind) => {
           return (
             <CategoryList.Item

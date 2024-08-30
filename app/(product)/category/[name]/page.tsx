@@ -11,10 +11,13 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <div className="w-full h-[335px] bg-black text-white flex items-end justify-center pb-[95px] mb-[160px]">
-        <h2>{params.name}</h2>
+      <div
+        className="w-full md:h-[335px] h-[192px] bg-black text-white box-border
+      md:pb-[95px] xl:mb-[160px] md:mb-[120px] mb-[64px] pb-[32px] flex items-end justify-center"
+      >
+        <h2 className="text-[28px] md:text-[40px]">{params.name}</h2>
       </div>
-      <div className="flex flex-col xl:max-w-[1110px] mx-auto gap-[160px] mb-[240px]">
+      <div className="flex flex-col xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto gap-[120px] xl:gap-[160px] xl:mb-[240px] mb-[120px]">
         {catalogProducts.map((val, ind) => {
           return (
             <ProductCard

@@ -26,8 +26,13 @@ export default function ProductImageGallery({
   className,
 }: Props) {
   return (
-    <div className={cn("w-full flex gap-[30px]", className)}>
-      <div className="flex flex-col gap-[32px]">
+    <div
+      className={cn(
+        "w-full flex flex-col md:flex-row gap-[20px] md:gap-[30px] items-center",
+        className
+      )}
+    >
+      <div className="flex flex-col md:gap-[32px] gap-[20px]">
         <div>
           <img src={topImageSrc} alt={topImageAlt} className="rounded-lg" />
         </div>

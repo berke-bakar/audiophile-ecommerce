@@ -45,15 +45,20 @@ export default function Page({}: Props) {
 
   return (
     <>
-      <div className="w-full h-[335px] bg-black text-white flex items-end justify-center pb-[95px] mb-[160px]">
-        <h2>Order Confirmed</h2>
+      <div
+        className="w-full md:h-[335px] h-[192px] bg-black text-white
+      md:pb-[95px] xl:mb-[160px] md:mb-[120px] mb-[64px] pb-[32px] flex items-end justify-center"
+      >
+        <h2 className="text-[28px] md:text-[40px]">Order Confirmed</h2>
       </div>
-      <div className="flex flex-col xl:max-w-[1110px] mx-auto gap-[160px] mb-[240px]">
+      <div className="flex flex-col xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto gap-[160px] xl:mb-[240px] md:mb-[120px] mb-[90px]">
         <div className="flex flex-col items-center gap-[24px]">
           <div className="rounded-full h-[64px] w-[64px] bg-primary-dark text-white text-center p-2">
             <h2>✓</h2>
           </div>
-          <h1 className="text-center">Thank you for your order</h1>
+          <h1 className="text-center text-[28px] md:text-[40px]">
+            Thank you for your order
+          </h1>
           <p className="opacity-50">
             You will receive an email confirmation shortly.
           </p>

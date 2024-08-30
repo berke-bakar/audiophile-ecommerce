@@ -14,9 +14,12 @@ export default async function Page({ params: { slug } }: Props) {
   const productInfo = await getSelectedProduct(slug);
   return (
     <>
-      <div className="xl:h-[96px] w-full bg-black mb-[160px]"></div>
-      <main className="max-w-[1110px] mx-auto">
-        <ProductPageCard product={productInfo} className={"mb-[160px]"} />
+      <div className="h-[90px] xl:h-[96px] w-full bg-black xl:mb-[160px] md:mb-[80px] mb-[65px]"></div>
+      <main className="xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto">
+        <ProductPageCard
+          product={productInfo}
+          className={"xl:mb-[160px] md:mb-[120px] mb-[90px]"}
+        />
         <ProductInfoCard
           features={productInfo.feature}
           className={"mb-[160px]"}
@@ -29,7 +32,7 @@ export default async function Page({ params: { slug } }: Props) {
           bottomImageAlt={productInfo.productImages.alt[1]}
           sideImageSrc={productInfo.productImages.imageUrl[2]}
           sideImageAlt={productInfo.productImages.alt[2]}
-          className={"mb-[240px]"}
+          className={"xl:mb-[160px] mb-[120px]"}
         />
       </main>
     </>
