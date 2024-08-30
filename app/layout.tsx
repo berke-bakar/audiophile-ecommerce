@@ -52,15 +52,25 @@ export default async function RootLayout({
           </CartProvider>
           <AboutUs
             imageUrl={siteSettings[0].aboutUsImage}
-            className="xl:max-w-[1110px] mx-auto xl:mb-[160px]"
+            className="xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto xl:mb-[160px] mb-[96px]"
           >
-            <div className="max-w-[41.5%] flex flex-col gap-[32px]">
+            <div className="xl:max-w-[41.5%] flex flex-col gap-[32px] text-center xl:text-start">
               <PortableText
                 value={siteSettings[0].content!}
                 components={{
                   marks: {
                     colored: ({ children }) => (
                       <span className="text-primary-dark">{children}</span>
+                    ),
+                  },
+                  block: {
+                    h2: ({ children }) => (
+                      <h2 className="text-pretty md:text-[40px] text-[28px]">
+                        {children}
+                      </h2>
+                    ),
+                    normal: ({ children }) => (
+                      <p className="opacity-50 text-balance">{children}</p>
                     ),
                   },
                 }}

@@ -23,7 +23,7 @@ export default async function Home() {
   return (
     <>
       <div
-        className="xl:mb-[120px]"
+        className="xl:mb-[120px] md:mb-[90px] mb-[65px]"
         style={{
           backgroundColor: bgColor,
         }}
@@ -37,7 +37,7 @@ export default async function Home() {
           backgroundImage={promotedResults.heroImageUrl}
         />
       </div>
-      <CategoryList className="xl:mb-[168px]">
+      <CategoryList className="xl:mb-[168px] mb-[96px]">
         {categoryResults.map((val, ind) => {
           return (
             <CategoryList.Item
@@ -48,7 +48,7 @@ export default async function Home() {
           );
         })}
       </CategoryList>
-      <div className="flex flex-col gap-[48px] xl:mb-[200px]">
+      {/* <div className="flex flex-col gap-[48px] xl:mb-[200px]">
         {promotedResults.promotedProductNames.map((val, ind) => {
           return (
             <PromotedItem
@@ -72,7 +72,7 @@ export default async function Home() {
             />
           );
         })}
-      </div>
+      </div> */}
     </>
   );
 }

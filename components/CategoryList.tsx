@@ -20,7 +20,7 @@ export default function CategoryList({
   return (
     <div
       className={cn(
-        "flex flex-col xl:flex-row xl:flex-wrap xl:gap-[30px] xl:justify-center",
+        "flex flex-col md:flex-row xl:flex-wrap xl:gap-[30px] gap-[10px] md:justify-center items-center",
         className
       )}
     >
@@ -34,7 +34,7 @@ function Item({ categoryImg, name, className }: CategoryItemProps) {
     <Link href={`/category/${name}`}>
       <div
         className={cn(
-          "flex flex-col justify-end xl:h-[204px] xl:w-[350px] rounded-lg bg-slate-medium p-7",
+          "flex flex-col justify-end xl:h-[204px] xl:w-[350px] md:w-[223px] w-[327px] rounded-lg bg-slate-medium p-7",
           className
         )}
       >
@@ -43,7 +43,9 @@ function Item({ categoryImg, name, className }: CategoryItemProps) {
             src={categoryImg}
             alt={`${name} category image`}
             fill
-            style={{ objectFit: "contain", top: "-25%" }}
+            style={{
+              objectFit: "contain",
+            }}
           />
         </div>
         <div className="flex flex-col items-center">

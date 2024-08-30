@@ -30,8 +30,8 @@ export default function Navbar({
   return (
     <nav
       className={cn(
-        "flex flex-row w-full justify-between items-center px-[40px] xl:px-0 h-[90px] xl:h-[96px] xl:max-w-[1110px] xl:mx-auto border-b border-white",
-        "xl:absolute xl:top-0 xl:left-0 xl:right-0",
+        "flex flex-row w-full justify-between items-center xl:px-0 h-[90px] xl:h-[96px] xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto border-b border-white",
+        "absolute top-0 left-0 right-0",
         className
       )}
     >
