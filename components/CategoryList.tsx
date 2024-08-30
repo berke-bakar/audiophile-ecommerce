@@ -11,6 +11,7 @@ type CategoryItemProps = {
   categoryImg: string;
   name: string;
   className?: string;
+  onClick?: React.MouseEventHandler;
 };
 
 export default function CategoryList({
@@ -29,9 +30,9 @@ export default function CategoryList({
   );
 }
 
-function Item({ categoryImg, name, className }: CategoryItemProps) {
+function Item({ categoryImg, name, className, onClick }: CategoryItemProps) {
   return (
-    <Link href={`/category/${name}`}>
+    <Link href={`/category/${name}`} onClick={onClick}>
       <div
         className={cn(
           "flex flex-col justify-end xl:h-[204px] xl:w-[350px] md:w-[223px] w-[327px] rounded-lg bg-slate-medium p-7",

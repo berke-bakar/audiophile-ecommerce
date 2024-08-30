@@ -7,31 +7,32 @@ import { Icon } from "./Icon";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import CartModal from "./cart/CartModal";
+import { CategoryType } from "@/sanity/lib/types";
+import CategoryModal from "./CategoryModal";
 
 type NavbarProps = {
   logo: string;
   icon: Icon;
   className?: string;
-  options?: string[];
+  optionsInfo: CategoryType[];
   optionsPrefix?: string;
-  checkoutLink?: string;
 };
 
 export default function Navbar({
   logo,
   icon,
   className,
-  options = [],
+  optionsInfo = [],
   optionsPrefix = "",
-  checkoutLink = "/checkout",
 }: NavbarProps) {
-  const [showModal, setShowModal] = useState(false);
-
+  const [showCartModal, setShowCartModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const options = ["Home", ...optionsInfo.map((val) => val.name)];
   return (
     <nav
       className={cn(
         "flex flex-row w-full justify-between items-center xl:px-0 h-[90px] xl:h-[96px] xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto border-b border-white",
-        "absolute top-0 left-0 right-0",
+        "absolute top-0 left-0 right-0 z-20",
         className
       )}
     >
@@ -42,6 +43,7 @@ export default function Navbar({
           height={hamburger.height}
           width={hamburger.width}
           className="xl:hidden"
+          onClick={() => setShowCategoryModal((prev) => !prev)}
         />
         <Link href={"/"}>
           <img src={logo} alt="Site logo" />
@@ -70,12 +72,20 @@ export default function Navbar({
           height={icon.height}
           width={icon.width}
           className="hover:cursor-pointer"
-          onClick={() => setShowModal(true)}
+          onClick={() => setShowCartModal(true)}
         />
       </div>
-      {showModal &&
+      {showCartModal &&
         createPortal(
-          <CartModal setShowModal={setShowModal} checkoutLink="/checkout" />,
+          <CartModal setShowModal={setShowCartModal} />,
+          document.body
+        )}
+      {showCategoryModal &&
+        createPortal(
+          <CategoryModal
+            setShowModal={setShowCategoryModal}
+            categoryInfo={optionsInfo}
+          />,
           document.body
         )}
     </nav>

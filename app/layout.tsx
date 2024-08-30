@@ -12,7 +12,7 @@ import NotificationProvider from "@/context/NotificationProvider";
 
 export const metadata: Metadata = {
   title: "AudioPhile - Where music, love & technology meets",
-  description: "A demo e-commerce app of a audio systems company store",
+  description: "A demo e-commerce app of an audio systems company store",
 };
 
 export default async function RootLayout({
@@ -21,7 +21,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const queryResults = await Promise.all([getSiteSettings(), getCategories()]);
-  const siteSettings = queryResults[0];
+  const siteSettings = queryResults[0][0];
   const categoryNames = queryResults[1].map((val) => val.name);
 
   return (
@@ -42,21 +42,20 @@ export default async function RootLayout({
         <NotificationProvider>
           <CartProvider>
             <Navbar
-              logo={siteSettings[0].logoImage}
+              logo={siteSettings.logoImage}
               icon={CartSvg}
-              options={["Home", ...categoryNames]}
+              optionsInfo={queryResults[1]}
               optionsPrefix="category"
-              checkoutLink={"/checkout"}
             />
             {children}
           </CartProvider>
           <AboutUs
-            imageUrl={siteSettings[0].aboutUsImage}
+            imageUrl={siteSettings.aboutUsImage}
             className="xl:max-w-[1110px] md:max-w-[689px] max-w-[327px] mx-auto xl:mb-[160px] mb-[96px]"
           >
             <div className="xl:max-w-[41.5%] flex flex-col gap-[32px] text-center xl:text-start">
               <PortableText
-                value={siteSettings[0].content!}
+                value={siteSettings.content!}
                 components={{
                   marks: {
                     colored: ({ children }) => (
@@ -78,12 +77,12 @@ export default async function RootLayout({
             </div>
           </AboutUs>
           <Footer
-            logo={siteSettings[0].logoImage}
+            logo={siteSettings.logoImage}
             options={["Home", ...categoryNames]}
             optionsPrefix="category"
-            socialLinks={siteSettings[0].socialLink}
+            socialLinks={siteSettings.socialLink}
           >
-            {siteSettings[0].footerText}
+            {siteSettings.footerText}
           </Footer>
         </NotificationProvider>
       </body>

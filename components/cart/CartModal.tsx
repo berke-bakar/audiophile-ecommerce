@@ -6,41 +6,13 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import CheckoutButton from "./CheckoutButton";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import { NotificationContext } from "@/context/NotificationProvider";
+import { Modal, Overlay } from "../Modal";
 
 type CartModalProps = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  checkoutLink: string;
 };
 
-type OverlayProps = {
-  onClick: React.MouseEventHandler;
-  className: string;
-} & React.PropsWithChildren;
-
-type ModalProps = {
-  className?: string;
-} & React.PropsWithChildren;
-
-function Overlay({ children, onClick, className }: OverlayProps) {
-  return (
-    <div id="overlay" onClick={onClick} className={className}>
-      {children}
-    </div>
-  );
-}
-
-function Modal({ className, children }: ModalProps) {
-  return (
-    <div className={cn("rounded-lg bg-white flex flex-col", className)}>
-      {children}
-    </div>
-  );
-}
-
-export default function CartModal({
-  setShowModal,
-  checkoutLink,
-}: CartModalProps) {
+export default function CartModal({ setShowModal }: CartModalProps) {
   const { clearCart, cartCount, cartDetails, totalPrice } = useShoppingCart();
   const { createNotification } = useContext(NotificationContext);
 
@@ -66,10 +38,11 @@ export default function CartModal({
 
   return (
     <Overlay
+      id="cartOverlay"
       onClick={(e) => {
         if (e.target === e.currentTarget) setShowModal(false);
       }}
-      className={"absolute z-10 w-full h-full bg-black bg-opacity-50 top-0"}
+      className={"absolute z-30 w-full h-full bg-black bg-opacity-50 top-0"}
     >
       <div
         className="relative xl:w-[1110px] md:w-[689px] w-[327px] mx-auto h-full"
