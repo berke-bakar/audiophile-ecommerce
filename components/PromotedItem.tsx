@@ -136,7 +136,7 @@ export default function PromotedItem({
         <Image
           src={imageInfo.url}
           alt={`Image of ${productName}`}
-          layout="responsive"
+          // layout="responsive"
           width={containerWidths[viewport]}
           height={imageInfo.calculatedHeight}
           className={"-z-10 rounded-lg absolute"}

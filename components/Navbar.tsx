@@ -9,6 +9,7 @@ import { createPortal } from "react-dom";
 import CartModal from "./cart/CartModal";
 import { CategoryType } from "@/sanity/lib/types";
 import CategoryModal from "./CategoryModal";
+import { useShoppingCart } from "use-shopping-cart";
 
 type NavbarProps = {
   logo: string;
@@ -27,7 +28,9 @@ export default function Navbar({
 }: NavbarProps) {
   const [showCartModal, setShowCartModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const { cartCount } = useShoppingCart();
   const options = ["Home", ...optionsInfo.map((val) => val.name)];
+
   return (
     <nav
       className={cn(
@@ -66,14 +69,23 @@ export default function Navbar({
         })}
       </ul>
       <div className="grow flex justify-end md:grow-0">
-        <Image
-          src={icon.src}
-          alt="interactable icon"
-          height={icon.height}
-          width={icon.width}
-          className="hover:cursor-pointer"
+        <div
+          className="relative hover:cursor-pointer"
+          style={{ height: icon.height }}
           onClick={() => setShowCartModal(true)}
-        />
+        >
+          <Image
+            src={icon.src}
+            alt="Cart icon"
+            height={icon.height}
+            width={icon.width}
+          />
+          {!!cartCount && (
+            <div className="absolute bg-white font-bold rounded-full h-[22px] px-2 text-black left-[70%] top-0 -translate-y-1/2 flex justify-center items-center leading-none select-none">
+              {cartCount}
+            </div>
+          )}
+        </div>
       </div>
       {showCartModal &&
         createPortal(

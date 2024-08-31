@@ -40,10 +40,10 @@ export default function ProductCard({
       <div className="w-[352px] xl:w-[540px] h-[352px] xl:h-[540px] relative">
         <Image
           src={imageUrl!}
-          objectFit="cover"
           fill
           alt={`${name} product image`}
-          className="rounded-lg"
+          className="rounded-lg object-cover"
+          priority={true}
         />
       </div>
       <div className="flex flex-col gap-[32px] justify-center items-center xl:items-start">
