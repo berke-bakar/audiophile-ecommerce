@@ -58,23 +58,37 @@ export async function getSelectedProduct(
 
 export async function getPromotedProducts(): Promise<PromotedProducts> {
   return sanityFetch({
-    query: groq`*[_type == "promotedProducts"] {
-        "heroProductName": heroItems.heroProduct->name,
-        "heroProductCategory": heroItems.heroProduct->category->name,
-        "heroProductSlug": heroItems.heroProduct->slug.current,
+    query: groq`*[_type == "promotedProducts"]{
+      "heroItems": {
+        "imageUrl": heroItems.asset->url,
+        "altText": heroItems.heroAlt,
         "heroText": heroItems.heroText,
-        "heroAlt": heroItems.heroAlt,
-        "heroImageUrl": heroItems.asset->url,
-        "heroImageDimensions": heroItems.asset->metadata.dimensions,
-        "promotedUrls": promotedItems[].asset->url,
-        "promotedDimensions": promotedItems[].asset->metadata.dimensions,
-        "promotedDescs": promotedItems[].description,
-        "promotedAlts": promotedItems[].alt,
-        "promotedTextStyles": promotedItems[].textStyle,
-        "promotedTextAlignments": promotedItems[].textAlignment,
-        "promotedPanelSeparated": promotedItems[].panelSeparated,
-        "promotedProductNames": promotedItems[].promotedProduct->name,
-        "promotedProductSlugs": promotedItems[].promotedProduct->slug.current,
-      }[0]`,
+        "heroProduct": heroItems.heroProduct->{
+          _id,
+          name,
+          "slug": slug.current,
+          "categoryName": category->name,
+        }
+      },
+      "promotedItems": promotedItems[]{
+        "desktopImageUrl": asset->url,
+        "desktopImageDim": asset->metadata.dimensions,
+        "tabletImageUrl": tabletImage.asset->url,
+        "tabletImageDim": tabletImage.asset->metadata.dimensions,
+        "mobileImageUrl": mobileImage.asset->url,
+        "mobileImageDim": mobileImage.asset->metadata.dimensions,
+        "altText": alt,
+        "promotedProduct": promotedProduct->{
+          _id,
+          name,
+          "categoryName": category->name,
+          "slug": slug.current
+        },
+        "description": description,
+        "textStyle": textStyle,
+        "textAlignment": textAlignment,
+        "panelSeparated": panelSeparated
+      }
+    }[0]`,
   });
 }

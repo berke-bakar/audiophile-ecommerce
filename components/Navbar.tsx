@@ -42,7 +42,7 @@ export default function Navbar({
           alt="hamburger menu icon"
           height={hamburger.height}
           width={hamburger.width}
-          className="xl:hidden"
+          className="xl:hidden cursor-pointer"
           onClick={() => setShowCategoryModal((prev) => !prev)}
         />
         <Link href={"/"}>

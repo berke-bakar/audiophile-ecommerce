@@ -34,18 +34,33 @@ export const promotedProductsType = defineType({
       type: "array",
       of: [
         {
+          name: "Promoted Product Image",
           type: "image",
           fields: [
+            defineField({
+              name: "tabletImage",
+              title:
+                "Provide tablet image if it should display different image on tablets",
+              type: "image",
+            }),
+            defineField({
+              name: "mobileImage",
+              title:
+                "Provide tablet image if it should display different image on tablets",
+              type: "image",
+            }),
             defineField({
               name: "alt",
               title: "Alt Text",
               type: "string",
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               title: "Which product are you promoting?",
               type: "reference",
               name: "promotedProduct",
               to: [{ type: "product" }],
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: "description",
@@ -57,6 +72,7 @@ export const promotedProductsType = defineType({
                 "Which color text would be better on the background image?",
               name: "textStyle",
               type: "string",
+              initialValue: "white",
               options: {
                 list: [
                   { title: "White", value: "white" },
@@ -65,11 +81,13 @@ export const promotedProductsType = defineType({
                 layout: "radio",
                 direction: "horizontal",
               },
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               title: "Which side the text should be aligned?",
               name: "textAlignment",
               type: "string",
+              initialValue: "right",
               options: {
                 list: [
                   { title: "Left", value: "left" },
@@ -78,6 +96,7 @@ export const promotedProductsType = defineType({
                 layout: "radio",
                 direction: "horizontal",
               },
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               title:
@@ -88,6 +107,7 @@ export const promotedProductsType = defineType({
               options: {
                 layout: "switch",
               },
+              validation: (Rule) => Rule.required(),
             }),
           ],
         },

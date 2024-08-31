@@ -19,11 +19,6 @@ const config: Config = {
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
       },
-      backgroundImage: {
-        "hero-lg": "url('/assets/hero-desktop.jpg')",
-        "hero-md": "url('/assets/hero-tablet.jpg')",
-        hero: "url('/assets/hero-sm.jpg')",
-      },
     },
   },
   plugins: [],

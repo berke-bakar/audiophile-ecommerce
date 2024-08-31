@@ -60,22 +60,36 @@ export type SiteSettings = {
 };
 
 export type PromotedProducts = {
-  heroProductName: string;
-  heroProductCategory: string;
-  heroProductSlug: string;
-  heroText: string;
-  heroAlt: string;
-  heroImageUrl: string;
-  heroImageDimensions: DimensionType;
-  promotedUrls: string[];
-  promotedDimensions: DimensionType[];
-  promotedDescs: string[];
-  promotedAlts: string[];
-  promotedTextStyles: string[];
-  promotedTextAlignments: Array<"left" | "right">;
-  promotedPanelSeparated: boolean[];
-  promotedProductNames: string[];
-  promotedProductSlugs: string[];
+  heroItems: {
+    imageUrl: string;
+    altText: string;
+    heroText: string;
+    heroProduct: {
+      _id: string;
+      name: string;
+      slug: string;
+      categoryName: string;
+    };
+  };
+  promotedItems: {
+    desktopImageUrl: string;
+    desktopImageDim: DimensionType;
+    tabletImageUrl: string;
+    tabletImageDim: DimensionType;
+    mobileImageUrl: string;
+    mobileImageDim: DimensionType;
+    altText: string;
+    textStyle: "black" | "white";
+    panelSeparated: boolean;
+    textAlignment: "left" | "right";
+    description: string;
+    promotedProduct: {
+      _id: string;
+      name: string;
+      slug: string;
+      categoryName: string;
+    };
+  }[];
 };
 
 export type DimensionType = {

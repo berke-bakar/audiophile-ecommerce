@@ -30,14 +30,14 @@ export default async function Home() {
       >
         <HeroSection
           infoText={"New Product"}
-          titleText={`${promotedResults.heroProductName} ${promotedResults.heroProductCategory}`}
-          subtitleText={promotedResults.heroText}
+          titleText={`${promotedResults.heroItems.heroProduct.name} ${promotedResults.heroItems.heroProduct.categoryName}`}
+          subtitleText={promotedResults.heroItems.heroText}
           buttonText={"See Product"}
-          buttonLink={`/product/${promotedResults.heroProductSlug}`}
-          backgroundImage={promotedResults.heroImageUrl}
+          buttonLink={`/product/${promotedResults.heroItems.heroProduct.slug}`}
+          backgroundImage={promotedResults.heroItems.imageUrl}
         />
       </div>
-      <CategoryList className="xl:mb-[168px] mb-[96px]">
+      <CategoryList className="xl:mb-[168px] md:mb-[96px] mb-[120px]">
         {categoryResults.map((val, ind) => {
           return (
             <CategoryList.Item
@@ -48,31 +48,43 @@ export default async function Home() {
           );
         })}
       </CategoryList>
-      {/* <div className="flex flex-col gap-[48px] xl:mb-[200px]">
-        {promotedResults.promotedProductNames.map((val, ind) => {
+      <div className="flex flex-col xl:gap-[48px] md:gap-[32px] gap-[24px] xl:mb-[200px] md:mb-[96px] mb-[120px]">
+        {promotedResults.promotedItems.map((val, ind) => {
           return (
             <PromotedItem
-              key={val}
-              productName={ind === 0 ? <h1>{val}</h1> : val}
-              productDescription={promotedResults.promotedDescs[ind]}
-              align={promotedResults.promotedTextAlignments[ind]}
-              bgImage={promotedResults.promotedUrls[ind]}
-              dimensions={promotedResults.promotedDimensions[ind]}
+              key={val.promotedProduct._id}
+              productName={
+                ind === 0 ? (
+                  <h1>{val.promotedProduct.name}</h1>
+                ) : (
+                  val.promotedProduct.name
+                )
+              }
+              productDescription={val.description}
+              align={val.textAlignment}
+              images={[
+                val.desktopImageUrl,
+                val.tabletImageUrl,
+                val.mobileImageUrl,
+              ]}
+              dimensions={[
+                val.desktopImageDim,
+                val.tabletImageDim,
+                val.mobileImageDim,
+              ]}
               buttonClass={cn({
-                "btn-1 bg-black":
-                  promotedResults.promotedTextStyles[ind] === "white",
-                "btn-2": promotedResults.promotedTextStyles[ind] === "black",
+                "btn-1 bg-black": val.textStyle === "white",
+                "btn-2": val.textStyle === "black",
               })}
-              buttonLink={`/product/${promotedResults.promotedProductSlugs[ind]}`}
+              buttonLink={`/product/${val.promotedProduct.slug}`}
               className={cn({
-                "text-white":
-                  promotedResults.promotedTextStyles[ind] === "white",
+                "text-white": val.textStyle === "white",
               })}
-              separated={promotedResults.promotedPanelSeparated[ind]}
+              separated={val.panelSeparated}
             />
           );
         })}
-      </div> */}
+      </div>
     </>
   );
 }
