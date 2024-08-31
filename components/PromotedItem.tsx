@@ -4,7 +4,6 @@ import { cn } from "@/utils/util";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import ResponsiveImage from "./ResponsiveImage";
 
 type PromotedItemProps = {
   productName: string | React.ReactElement;
