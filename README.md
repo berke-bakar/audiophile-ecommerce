@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Audiophile Customizable E-Commerce
 
-## Getting Started
+This project is an e-commerce website built for an audio systems company store using  **Next.js**, **Tailwind CSS**, and  **Sanity CMS**. The website is designed to be fully customizable, enabling quick transformation into a completely different store with minimal effort (provided the necessary assets are available). The checkout functionality is integrated using  **Stripe's Checkout Mode API** .
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Fully Customizable Content** :
+  * Using Sanity CMS studio, all aspects of the website can be easily customized by marketing/designer team without redeployment.
+  * Change product names, images, descriptions, features and in-the-box accessories and product categories within minutes.
+  * Modify the call-to-action (hero) image & product, promoted products on home page, footer text & image, and social media links directly from the Sanity CMS Studio.
+  * For flexibility either a single sized responsive image or multiple images for different device sizes can be used. (Desktop, tablet or mobile) The system defaults to desktop image for all device sizes if specific image for device size is not uploaded through Sanity CMS Studio.
+* **Modern Tech Stack** :
+  * Built with **Next.js** for server-side rendering and optimized performance.
+  * Styled with **Tailwind CSS** for a responsive and modern user interface.
+  * Content comes from
+* **Secure Checkout** :
+  * Integrated with **[Stripes Checkout Mode API](https://docs.stripe.com/payments/checkout)** .
+  * The checkout is in **test mode**, allowing orders to be placed using Stripe's [test card numbers](https://docs.stripe.com/testing#international-cards).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+TODO: Add images
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Demo Customization Screenshots
 
-## Learn More
+To demonstrate the full flexibility and power of the system, I will showcase a **demo customization** where the e-commerce site is transformed from an audio systems store into a **generic tech store**. This version features products such as phones, tablets, and smartwatches. All of these changes are done seamlessly through the **Sanity CMS** without any code modifications, highlighting the ease of rebranding and restructuring.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+TODO: Add images
