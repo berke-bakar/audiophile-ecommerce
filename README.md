@@ -12,7 +12,7 @@ This project is an e-commerce website built for an audio systems company store u
 * **Modern Tech Stack** :
   * Built with **Next.js** for server-side rendering and optimized performance.
   * Styled with **Tailwind CSS** for a responsive and modern user interface.
-  * Content comes from
+  * Content text and images are configured/pulled from **Sanity CMS** using Sanity's own **GROQ** query language (An open-source GraphQL like query language).
 * **Secure Checkout** :
   * Integrated with **[Stripes Checkout Mode API](https://docs.stripe.com/payments/checkout)** .
   * The checkout is in **test mode**, allowing orders to be placed using Stripe's [test card numbers](https://docs.stripe.com/testing#international-cards).
