@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { Modal, Overlay } from "./Modal";
-import CategoryList from "./CategoryList";
+import CategoryList from "../CategoryList";
 import { CategoryType } from "@/sanity/lib/types";
 
 type CategoryModalProps = {
@@ -20,6 +20,7 @@ export default function CategoryModal({
       document.body.classList.remove("overflow-hidden");
     };
   }, []);
+
   return (
     <Overlay
       id="categoryOverlay"

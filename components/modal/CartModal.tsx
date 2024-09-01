@@ -1,12 +1,12 @@
 "use client";
 import { cn } from "@/utils/util";
 import React, { useContext, useEffect } from "react";
-import CartItem from "./CartItem";
+import CartItem from "../cart/CartItem";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
-import CheckoutButton from "./CheckoutButton";
+import CheckoutButton from "../cart/CheckoutButton";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import { NotificationContext } from "@/context/NotificationProvider";
-import { Modal, Overlay } from "../Modal";
+import { Modal, Overlay } from "./Modal";
 
 type CartModalProps = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;

@@ -6,9 +6,9 @@ import hamburger from "@/public/assets/icon-hamburger.svg";
 import { Icon } from "./Icon";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import CartModal from "./cart/CartModal";
+import CartModal from "./modal/CartModal";
 import { CategoryType } from "@/sanity/lib/types";
-import CategoryModal from "./CategoryModal";
+import CategoryModal from "./modal/CategoryModal";
 import { useShoppingCart } from "use-shopping-cart";
 
 type NavbarProps = {
