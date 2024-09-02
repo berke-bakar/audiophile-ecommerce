@@ -19,10 +19,14 @@ This project is an e-commerce website built for an audio systems company store u
 
 ## Screenshots
 
-TODO: Add images
+| Home                                                                       | Categories                                                                             | Product                                                                             | Cart                                                           | Confirmation                                                                                   | Navigation (Tablet/Mobile)                                                               |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [![homepage](image/README/homePage_small.png)](image/README/homePage_large.png) | [![categorypage](image/README/categoryPage_small.png)](image/README/categoryPage_large.png) | [![productpage](image/README/productPage_small.png)](image/README/productPage_large.png) | [![cart](image/README/cart_small.png)](image/README/cart_large.png) | [![confirmation](image/README/confirmationPage_small.png)](image/README/confirmationPage_large.png) | [![navbar](image/README/tabletNavbarView_small.png)](image/README/tabletNavbarView_large.png) |
 
 ## Demo Customization Screenshots
 
 To demonstrate the full flexibility and power of the system, I will showcase a **demo customization** where the e-commerce site is transformed from an audio systems store into a **generic tech store**. This version features products such as phones, tablets, and smartwatches. All of these changes are done seamlessly through the **Sanity CMS** without any code modifications, highlighting the ease of rebranding and restructuring.
 
-TODO: Add images
+| Home | Categories | Product |
+| ---- | ---------- | ------- |
+| [![homepage](image/README/example/homePageCustom_small.png)](image/README/example/homePageCustom_large.png) | [![categorypage](image/README/example/categoryPageCustom_small.png)](image/README/example/categoryPageCustom_large.png) | [![productpage](image/README/example/productPageCustom_small.png)](image/README/example/productPageCustom_large.png) |
