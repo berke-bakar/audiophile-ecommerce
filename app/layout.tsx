@@ -9,6 +9,7 @@ import AboutUs from "@/components/sections/AboutUs";
 import { PortableText } from "@portabletext/react";
 import CartProvider from "@/context/CartProvider";
 import NotificationProvider from "@/context/NotificationProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "AudioPhile - Where music, love & technology meets",
@@ -85,6 +86,7 @@ export default async function RootLayout({
             {siteSettings.footerText}
           </Footer>
         </NotificationProvider>
+        <Analytics />
       </body>
     </html>
   );
